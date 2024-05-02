@@ -23,7 +23,7 @@ In order to accelerate demo script, we'll use pre-built images from quay.io and 
 3. Get the login command for the OpenShift cluster
 
 
-![login-devsandbox](https://github.com/slemeur/podman-desktop-demo/blob/main/primary-podify-demo/assets/devsandbox-login.png)
+![login-devsandbox](https://github.com/redhat-developer-demos/podify-quarkus-redis/blob/main/primary-podify-demo/assets/devsandbox-login.png)
 
 4. Run the login command in a terminal
 
@@ -74,7 +74,7 @@ For that, we have a Quarkus app running in its container, and a Redis container 
 
 5. Now let's open the application, by clicking on the small "open" icon from podman desktop
 
-![open-app](https://github.com/slemeur/podman-desktop-demo/blob/main/primary-podify-demo/assets/open-app.png)
+![open-app](https://github.com/redhat-developer-demos/podify-quarkus-redis/blob/main/primary-podify-demo/assets/open-app.png)
 
 6. Show the application running in the browser and refresh it multiple times
 
@@ -84,12 +84,12 @@ For that, we have a Quarkus app running in its container, and a Redis container 
 
 8. Create a pod from the container view in the Podman Desktop UI
     - Select the 2 containers in the list
-      ![create-pod-button](https://github.com/slemeur/podman-desktop-demo/blob/main/primary-podify-demo/assets/create-pod-button.png)
+      ![create-pod-button](https://github.com/redhat-developer-demos/podify-quarkus-redis/blob/main/primary-podify-demo/assets/create-pod-button.png)
     - Click on the "Create Pod" button
 
 9. Podman Desktop is showing a new page where the user can customize the creation of the Pod. Let's just get the default settings.
 
-![create-pod-form](https://github.com/slemeur/podman-desktop-demo/blob/main/primary-podify-demo/assets/create-pod-form.png)
+![create-pod-form](https://github.com/redhat-developer-demos/podify-quarkus-redis/blob/main/primary-podify-demo/assets/create-pod-form.png)
 
 Wait until the pod is getting created. You'll be automatically redirected to the pod view.
 
@@ -102,7 +102,7 @@ Wait until the pod is getting created. You'll be automatically redirected to the
 12. Now, what we want to do, is to transition that pod to OpenShift!
     - From the pod view, click on the "Deploy to kubernetes" button
 
-![deploy-pod-to-kubernetes](https://github.com/slemeur/podman-desktop-demo/blob/main/primary-podify-demo/assets/deploy-pod-to-kubernetes.png)
+![deploy-pod-to-kubernetes](https://github.com/redhat-developer-demos/podify-quarkus-redis/blob/main/primary-podify-demo/assets/deploy-pod-to-kubernetes.png)
 
 13. Podman Desktop is showing a new page where the user can customize the deployment of the Pod to OpenShift. Let's just get the default settings.
     - We can speak over the generate kube capabilities from Podman
@@ -111,16 +111,16 @@ Wait until the pod is getting created. You'll be automatically redirected to the
 
 14. Run the deployment, by clicking on the button "Deploy"
 
-![deploy](https://github.com/slemeur/podman-desktop-demo/blob/main/primary-podify-demo/assets/deploy.png)
+![deploy](https://github.com/redhat-developer-demos/podify-quarkus-redis/blob/main/primary-podify-demo/assets/deploy.png)
 
 15. Wait until the deployment is done. You'll be have links to open the application running on OpenShift.
 
-![open-openshift](https://github.com/slemeur/podman-desktop-demo/blob/main/primary-podify-demo/assets/open-openshift.png)
+![open-openshift](https://github.com/redhat-developer-demos/podify-quarkus-redis/blob/main/primary-podify-demo/assets/open-openshift.png)
 
 16. On Openshift, get back to your previous tab with the Topology view. You can see the pod running on OpenShift.
     - Open the Pod details
 
-![pod-details](https://github.com/slemeur/podman-desktop-demo/blob/main/primary-podify-demo/assets/pod-detail.png)
+![pod-details](https://github.com/redhat-developer-demos/podify-quarkus-redis/blob/main/primary-podify-demo/assets/pod-detail.png)
 
     - You can click on "my pod" in the pod section, to show details of the pod
     - Show running containers, access to logs, terminal
