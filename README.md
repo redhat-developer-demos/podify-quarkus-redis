@@ -1,3 +1,5 @@
+# Podified Quarkus with Redis Podman (Desktop) Demo
+
 # Pre-requisites
 
 ## Podman 4.5
@@ -131,7 +133,7 @@ Wait until the pod is getting created. You'll be automatically redirected to the
 ### Run the redis from quay.io
 
 ```bash
-podman run -d -p 6379:6379 --name redis quay.io/centos7/redis-5-centos7
+podman run -d -p 6379:6379 --name redis quay.io/podman-desktop-demo/podify-demo-backend:v1
 ```
 
 ### Run the application
@@ -163,7 +165,7 @@ podman run -d -p 8080:5000 --add-host=redis:$(podman inspect redis | jq -r '.[0]
 Here we declare all the ports that we need for the application. It has to be done each time creating a new pod.
 
 ```bash
-podman run -dt --pod new:quarkus-pod -p 6379:6379 -p 8080:5000 --name redis quay.io/centos7/redis-5-centos7
+podman run -dt --pod new:quarkus-pod -p 6379:6379 -p 8080:5000 --name redis quay.io/podman-desktop-demo/podify-demo-backend:v1
 ```
 
 ### Start the Quarkus container in a pod

@@ -24,7 +24,7 @@ public class MainResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance mainPage() {
-        int count = 1;
+        int count = 0;
 
         if(incrementService.keys().await().indefinitely().contains("count")) {
             count = incrementService.get("count");
