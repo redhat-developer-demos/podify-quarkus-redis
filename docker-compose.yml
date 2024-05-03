@@ -1,0 +1,29 @@
+
+version: "3"
+services:
+
+  redis:
+    image: quay.io/podman-desktop-demo/podify-demo-backend:v1
+    container_name: redis
+    ports:
+      - "6379"
+    restart: on-failure
+    networks:
+      default:
+        aliases:
+          - quarkus-network
+
+  quarkus-app:
+    image: quay.io/rhdevelopers/quarkus-redis
+    container_name: quarkus-app
+    depends_on:
+      - redis
+    ports:
+      - "8080:8080"
+    environment:
+      redis: redis
+    restart: on-failure
+    networks:
+      default:
+        aliases:
+          - quarkus-network
