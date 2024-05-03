@@ -20,15 +20,15 @@ public class MainResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance mainPage() {
-        int count = 0;
+        int count;
 
         if(incrementService.keys().await().indefinitely().contains("count")) {
             count = incrementService.get("count");
+        } else {
+            count = 1;
         }
 
-        incrementService.set("count", ++count);
-
-
+        incrementService.increment("count", 1);
 
         return index.data("count", count);
     }
