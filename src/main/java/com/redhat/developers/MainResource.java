@@ -26,6 +26,7 @@ public class MainResource {
             count = incrementService.get("count");
         } else {
             count = 1;
+            incrementService.set("count", count);
         }
 
         incrementService.increment("count", 1);
