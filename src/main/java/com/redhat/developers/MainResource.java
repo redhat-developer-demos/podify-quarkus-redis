@@ -8,10 +8,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
-
 @Path("/")
 public class MainResource {
 
