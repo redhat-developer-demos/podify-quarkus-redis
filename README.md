@@ -23,14 +23,14 @@ In order to accelerate demo script, we'll use pre-built images from quay.io and 
 3. Get the login command for the OpenShift cluster
 
 
-![login-devsandbox](https://github.com/redhat-developer-demos/podify-quarkus-redis/blob/main/primary-podify-demo/assets/devsandbox-login.png)
+![login-devsandbox](https://github.com/redhat-developer-demos/podify-quarkus-redis/blob/main/assets/devsandbox-login.png)
 
 4. Run the login command in a terminal
 
 ### Make sure you don't have anything from previous demo in your openshift namespace
 
 
-### Start with a fresh Podman Machine
+### Start with a fresh Podman Machine (if you're on Windows or Mac, otherwise skip this section)
 
 **Make sure to init with the proper image**
 ```bash
@@ -40,12 +40,6 @@ podman machine init --image-path ./fedora-coreos-36.20220806.3.0-qemu.x86_64.qco
 **Podman Machine start**
 ```bash
 podman machine start
-```
-
-### Pre-load images and start the application running into multiple local containers
-
-```bash
-sh ./preload.sh
 ```
 
 ### Prepare your browser
@@ -130,10 +124,17 @@ Wait until the pod is getting created. You'll be automatically redirected to the
 
 # Demo introduction with build & run of images
 
+### Create podman network
+
+```bash
+podman network create quarkus
+```
+
+
 ### Run the redis from quay.io
 
 ```bash
-podman run -d -p 6379:6379 --name redis quay.io/podman-desktop-demo/podify-demo-backend:v1
+podman run -d -p 6379:6379 --network=quarkus --name redis quay.io/podman-desktop-demo/podify-demo-backend:v1
 ```
 
 ### Run the application
@@ -143,13 +144,13 @@ podman run -d -p 6379:6379 --name redis quay.io/podman-desktop-demo/podify-demo-
 (it is also published and public on quay.io)
 
 ```bash
-podman build -t quay.io/rhdevelopers/quarkus-redis -f ./Dockerfile
+podman build -t quay.io/rhdevelopers/quarkus-redis -f ./src/main/docker/Dockerfile.jvm .
 ```
 
 #### Run the Quarkus app
 
 ```bash
-podman run -d -p 8080:5000 --add-host=redis:$(podman inspect redis | jq -r '.[0].NetworkSettings.IPAddress') --name quarkus-app quay.io/rhdevelopers/quarkus-redis
+podman run -d -p 8080:8080 --network=quarkus -e redis=redis --name quarkus-app quay.io/rhdevelopers/quarkus-redis
 ```
 
 # Instructions to create pod manually from CLI
@@ -165,7 +166,7 @@ podman run -d -p 8080:5000 --add-host=redis:$(podman inspect redis | jq -r '.[0]
 Here we declare all the ports that we need for the application. It has to be done each time creating a new pod.
 
 ```bash
-podman run -dt --pod new:quarkus-pod -p 6379:6379 -p 8080:5000 --name redis quay.io/podman-desktop-demo/podify-demo-backend:v1
+podman run -dt --pod new:quarkus-pod -p 6379:6379 -p 8080:8080 --name redis quay.io/podman-desktop-demo/podify-demo-backend:v1
 ```
 
 ### Start the Quarkus container in a pod
@@ -173,5 +174,3 @@ podman run -dt --pod new:quarkus-pod -p 6379:6379 -p 8080:5000 --name redis quay
 ```bash
 podman run -dt --pod quarkus-pod --name quarkus-app quay.io/rhdevelopers/quarkus-redis
 ```
-
-
